@@ -4,8 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>PDF to Word</title>
+
+  <!-- Google AdSense -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8669708835558073"
      crossorigin="anonymous"></script>
+
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -13,6 +16,12 @@
   <input type="file" id="pdfFile" accept=".pdf" />
   <button onclick="convertPdfToText()">Convert</button>
   <pre id="outputText"></pre>
+
+  <!-- Cookie Consent Banner -->
+  <div id="cookie-banner" style="position:fixed;bottom:0;width:100%;background:#222;color:#fff;padding:10px;text-align:center;z-index:9999;">
+    We use cookies to improve your experience.
+    <button onclick="document.getElementById('cookie-banner').style.display='none'" style="margin-left:10px;padding:5px 10px;">OK</button>
+  </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
   <script>
@@ -29,7 +38,7 @@
         for (let i = 1; i <= pdf.numPages; i++) {
           const page = await pdf.getPage(i);
           const content = await page.getTextContent();
-          text += content.items.map(item => item.str).join(' ') + '\\n\\n';
+          text += content.items.map(item => item.str).join(' ') + '\n\n';
         }
 
         document.getElementById('outputText').textContent = text;
