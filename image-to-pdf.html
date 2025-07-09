@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Image to PDF</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>Image to PDF</h1>
+  <input type="file" id="imageFiles" accept="image/*" multiple />
+  <button onclick="createPDF()">Convert to PDF</button>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script>
+    async function createPDF() {
+      const { jsPDF } = window.jspdf;
+      const files = document.getElementById('imageFiles').files;
+      if (!files.length) return alert('Please select images');
+      const pdf = new jsPDF();
+      for (let i = 0; i < files.length; i++) {
+        const imgData = await readFileAsDataURL(files[i]);
+        if (i > 0) pdf.addPage();
+        pdf.addImage(imgData, 'JPEG', 10, 10, 180, 160);
+      }
+      pdf.save('images.pdf');
+    }
+    function readFileAsDataURL(file) {
+      return new Promise(resolve => {
+        const reader = new FileReader();
+        reader.onload = e => resolve(e.target.result);
+        reader.readAsDataURL(file);
+      });
+    }
+  </script>
+</body>
+</html>
