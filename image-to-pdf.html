@@ -4,9 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Image to PDF</title>
-
-  <!-- Google AdSense -->
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8669708835558073"
+  
+<!-- Google AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8669708835558073"
      crossorigin="anonymous"></script>
 
   <link rel="stylesheet" href="style.css" />
@@ -15,12 +15,12 @@
   <h1>Image to PDF</h1>
   <input type="file" id="imageFiles" accept="image/*" multiple />
   <button onclick="createPDF()">Convert to PDF</button>
-
-  <!-- Cookie Consent Banner -->
-  <div id="cookie-banner" style="position:fixed;bottom:0;width:100%;background:#222;color:#fff;padding:10px;text-align:center;z-index:9999;">
-    We use cookies to improve your experience.
-    <button onclick="document.getElementById('cookie-banner').style.display='none'" style="margin-left:10px;padding:5px 10px;">OK</button>
-  </div>
+  
+<!-- Cookie Consent Banner -->
+<div id="cookie-banner" style="position:fixed;bottom:0;width:100%;background:#222;color:#fff;padding:10px;text-align:center;z-index:9999;">
+  We use cookies to improve your experience.
+  <button onclick="document.getElementById('cookie-banner').style.display='none'" style="margin-left:10px;padding:5px 10px;">OK</button>
+</div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script>
@@ -28,18 +28,14 @@
       const { jsPDF } = window.jspdf;
       const files = document.getElementById('imageFiles').files;
       if (!files.length) return alert('Please select images');
-
       const pdf = new jsPDF();
-
       for (let i = 0; i < files.length; i++) {
         const imgData = await readFileAsDataURL(files[i]);
         if (i > 0) pdf.addPage();
         pdf.addImage(imgData, 'JPEG', 10, 10, 180, 160);
       }
-
       pdf.save('images.pdf');
     }
-
     function readFileAsDataURL(file) {
       return new Promise(resolve => {
         const reader = new FileReader();
