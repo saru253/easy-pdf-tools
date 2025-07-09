@@ -2,58 +2,26 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PDF Merge</title>
-  
-<!-- Google AdSense -->
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8669708835558073"
-     crossorigin="anonymous"></script>
-
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h1>PDF Merge</h1>
-
-<!-- Google Ad Display -->
-<ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-client="ca-pub-8669708835558073"
-     data-ad-slot="1234567890"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-
-  <input type="file" id="pdfFiles" accept="application/pdf" multiple />
-  <button onclick="mergePDFs()">Merge PDFs</button>
-  
-<!-- Cookie Consent Banner -->
-<div id="cookie-banner" style="position:fixed;bottom:0;width:100%;background:#222;color:#fff;padding:10px;text-align:center;z-index:9999;">
-  We use cookies to improve your experience.
-  <button onclick="document.getElementById('cookie-banner').style.display='none'" style="margin-left:10px;padding:5px 10px;">OK</button>
-</div>
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+  <header>PDF Merge</header>
+  <main>
+    <div class="steps">
+      <p>1. Select multiple PDF files</p>
+      <p>2. Click Merge</p>
+      <p>3. Download merged PDF</p>
+    </div>
+    <input type="file" id="fileInput" />
+    <button onclick="handleClick()">Start</button>
+  </main>
+  <footer>© 2025 EasyPDFTools</footer>
   <script>
-    async function mergePDFs() {
-      const files = document.getElementById('pdfFiles').files;
-      if (!files.length) return alert('Select at least 2 PDF files');
-      const mergedPdf = await PDFLib.PDFDocument.create();
-      for (const file of files) {
-        const bytes = await file.arrayBuffer();
-        const pdf = await PDFLib.PDFDocument.load(bytes);
-        const copiedPages = await mergedPdf.copyPages(pdf, pdf.getPageIndices());
-        copiedPages.forEach(page => mergedPdf.addPage(page));
-      }
-      const mergedBytes = await mergedPdf.save();
-      const blob = new Blob([mergedBytes], { type: 'application/pdf' });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = 'merged.pdf';
-      a.click();
+    function handleClick() {
+      alert("This is a demo. Add your script here.");
     }
   </script>
+  
 </body>
 </html>

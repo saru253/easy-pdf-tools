@@ -2,47 +2,26 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Text to PDF</title>
-  
-<!-- Google AdSense -->
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8669708835558073"
-     crossorigin="anonymous"></script>
-
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h1>Text to PDF</h1>
-
-<!-- Google Ad Display -->
-<ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-client="ca-pub-8669708835558073"
-     data-ad-slot="1234567890"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-
-  <textarea id="textInput" rows="10" cols="50" placeholder="Enter your text here..."></textarea><br>
-  <button onclick="generatePDF()">Download PDF</button>
-  
-<!-- Cookie Consent Banner -->
-<div id="cookie-banner" style="position:fixed;bottom:0;width:100%;background:#222;color:#fff;padding:10px;text-align:center;z-index:9999;">
-  We use cookies to improve your experience.
-  <button onclick="document.getElementById('cookie-banner').style.display='none'" style="margin-left:10px;padding:5px 10px;">OK</button>
-</div>
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <header>Text to PDF</header>
+  <main>
+    <div class="steps">
+      <p>1. Write or paste text</p>
+      <p>2. Click Generate</p>
+      <p>3. Download text as PDF</p>
+    </div>
+    <input type="file" id="fileInput" />
+    <button onclick="handleClick()">Start</button>
+  </main>
+  <footer>© 2025 EasyPDFTools</footer>
   <script>
-    function generatePDF() {
-      const { jsPDF } = window.jspdf;
-      const doc = new jsPDF();
-      const text = document.getElementById('textInput').value;
-      doc.text(text, 10, 10);
-      doc.save("text.pdf");
+    function handleClick() {
+      alert("This is a demo. Add your script here.");
     }
   </script>
+  
 </body>
 </html>

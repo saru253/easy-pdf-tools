@@ -1,59 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PDF to Word</title>
-  
-<!-- Google AdSense -->
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8669708835558073"
-     crossorigin="anonymous"></script>
-
+  <meta charset="UTF-8">
+  <title>PDF to Word Converter</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h1>PDF to Word</h1>
-
-<!-- Google Ad Display -->
-<ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-client="ca-pub-8669708835558073"
-     data-ad-slot="1234567890"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-
-  <input type="file" id="pdfFile" accept=".pdf" />
-  <button onclick="convertPdfToText()">Convert</button>
-  <pre id="outputText"></pre>
-  
-<!-- Cookie Consent Banner -->
-<div id="cookie-banner" style="position:fixed;bottom:0;width:100%;background:#222;color:#fff;padding:10px;text-align:center;z-index:9999;">
-  We use cookies to improve your experience.
-  <button onclick="document.getElementById('cookie-banner').style.display='none'" style="margin-left:10px;padding:5px 10px;">OK</button>
-</div>
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
+  <header>PDF to Word Converter</header>
+  <main>
+    <div class="steps">
+      <p>1. Choose a PDF file</p>
+      <p>2. Click Convert</p>
+      <p>3. Copy or download extracted text</p>
+    </div>
+    <input type="file" id="fileInput" />
+    <button onclick="handleClick()">Start</button>
+  </main>
+  <footer>© 2025 EasyPDFTools</footer>
   <script>
-    async function convertPdfToText() {
-      const file = document.getElementById('pdfFile').files[0];
-      if (!file) return alert('Please select a PDF file');
-      const fileReader = new FileReader();
-      fileReader.onload = async function () {
-        const typedArray = new Uint8Array(this.result);
-        const pdf = await pdfjsLib.getDocument(typedArray).promise;
-        let text = '';
-        for (let i = 1; i <= pdf.numPages; i++) {
-          const page = await pdf.getPage(i);
-          const content = await page.getTextContent();
-          text += content.items.map(item => item.str).join(' ') + '\n\n';
-        }
-        document.getElementById('outputText').textContent = text;
-      };
-      fileReader.readAsArrayBuffer(file);
+    function handleClick() {
+      alert("This is a demo. Add your script here.");
     }
   </script>
+  
 </body>
 </html>
