@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
-<head><title>Free PDF Tools - Convert PDF to Word, Merge, Image to PDF</title>
+<html>
+<head>><title>Free PDF Tools - Convert PDF to Word, Merge, Image to PDF</title>
 <meta name="description" content="Use EasyPDFTools to convert PDF to Word, merge PDFs, image to PDF, text to PDF & more. No watermark. No signup. Free forever." />
 <meta name="keywords" content="pdf tools, convert pdf, pdf to word, merge pdf, image to pdf, text to pdf, free pdf converter, online pdf tool" />
 <meta name="robots" content="index, follow" />
@@ -9,50 +9,48 @@
 <meta property="og:url" content="https://easy-pdf-tools.netlify.app">
 <meta property="og:type" content="website">
 
+
+
+  <title>Merge PDF - EasyPDFTools</title>
   <meta charset="UTF-8">
-  <title>PDF Merge</title>
-  <link rel="stylesheet" href="style.css" />
+  <script src="https://unpkg.com/pdf-lib/dist/pdf-lib.min.js"></script>
 </head>
-<body>
-  <header>PDF Merge</header>
-  <main>
-    <div class="steps">
-      <p>1. Select multiple PDF files</p>
-      <p>2. Click Merge</p>
-      <p>3. Download merged PDF</p>
-    </div>
-    <input type="file" id="fileInput" />
-    <button onclick="handleClick()">Start</button>
-  </main>
-  <footer>
-  <div style="padding: 20px; text-align: left; max-width: 900px; margin: auto;">
-    <h3>About EasyPDFTools</h3>
-    <p>EasyPDFTools is a fast and free online toolkit to convert and manage your PDF files. No signup, no watermark, 100% free.</p>
+<body style="font-family:sans-serif; text-align:center; padding:20px;">
 
-    <h3>🛠️ Tools Available</h3>
-    <ul>
-      <li><img src="https://img.icons8.com/color/32/pdf.png"/> PDF to Word – Extract text from PDFs</li>
-      <li><img src="https://img.icons8.com/color/32/image.png"/> Image to PDF – Convert images into PDF</li>
-      <li><img src="https://img.icons8.com/color/32/merge-files.png"/> PDF Merge – Combine multiple PDFs</li>
-      <li><img src="https://img.icons8.com/color/32/text.png"/> Text to PDF – Create PDF from plain text</li>
-    </ul>
+  <h1>📎 Merge PDFs</h1>
+  <p>Select multiple PDF files and merge them into one single PDF. Free & simple!</p>
 
-    <h3>📞 Contact</h3>
-    <p>Have questions or suggestions? Email us at <strong>support@easypdftools.site</strong></p>
+  <input type="file" id="mergeInput" accept="application/pdf" multiple><br><br>
+  <button onclick="mergePDFs()">Merge Now</button>
 
-    <h3>🔐 Privacy & Disclaimer</h3>
-    <p>We don’t store your files. All processing is done in the browser. Powered by open-source tools.</p>
-
-    <p style="text-align:center; margin-top: 20px; font-size: 14px; color: #666;">© 2025 EasyPDFTools — All rights reserved</p>
-  </div>
-</footer>
-
-  <footer>© 2025 EasyPDFTools</footer>
   <script>
-    function handleClick() {
-      alert("This is a demo. Add your script here.");
+    async function mergePDFs() {
+      const input = document.getElementById('mergeInput');
+      const files = input.files;
+      if (files.length < 2) {
+        alert("Select at least 2 PDF files to merge.");
+        return;
+      }
+
+      const mergedPdf = await PDFLib.PDFDocument.create();
+
+      for (let file of files) {
+        const bytes = await file.arrayBuffer();
+        const pdf = await PDFLib.PDFDocument.load(bytes);
+        const copiedPages = await mergedPdf.copyPages(pdf, pdf.getPageIndices());
+        copiedPages.forEach(p => mergedPdf.addPage(p));
+      }
+
+      const mergedBytes = await mergedPdf.save();
+      const blob = new Blob([mergedBytes], { type: "application/pdf" });
+      const url = URL.createObjectURL(blob);
+
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "merged.pdf";
+      a.click();
     }
   </script>
-  
+
 </body>
 </html>
