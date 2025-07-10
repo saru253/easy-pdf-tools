@@ -1,25 +1,31 @@
 <!DOCTYPE html>
-<html>
-<head><link rel="stylesheet" href="style.css" />
-
-  <title>Merge PDFs - EasyPDFTools</title>
+<html lang="en">
+<head>
   <meta charset="UTF-8" />
-  
-<!-- AdSense -->
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8669708835558073"
-     crossorigin="anonymous"></script>
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Merge PDFs - EasyPDFTools</title>
+  <meta name="description" content="Merge multiple PDF files into one. No sign-up, free and secure PDF merger tool." />
+  <link rel="stylesheet" href="style.css" />
+  <!-- AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8669708835558073" crossorigin="anonymous"></script>
   <script src="https://unpkg.com/pdf-lib/dist/pdf-lib.min.js"></script>
-</head><body style="text-align:center; font-family:sans-serif; padding:20px;">
-  <h1>📎 Merge PDFs</h1>
-  <p>Combine multiple PDF files into one clean document.</p>
-  <input type="file" id="mergeInput" accept="application/pdf" multiple><br><br>
-  <button onclick="mergePDFs()">Merge Now</button>
+</head>
+<body>
+  <header>
+    <h1>📎 Merge PDFs</h1>
+    <p>Select two or more PDF files to merge them</p>
+  </header>
+  <div class="container">
+    <input type="file" id="mergeInput" accept="application/pdf" multiple><br><br>
+    <button onclick="mergePDFs()">Merge Now</button>
+  </div>
+  <div class="footer">© 2025 EasyPDFTools</div>
+
   <script>
     async function mergePDFs() {
       const input = document.getElementById('mergeInput');
       const files = input.files;
-      if (files.length < 2) return alert("Select at least 2 PDF files to merge.");
+      if (files.length < 2) return alert("Select at least 2 PDF files.");
       const mergedPdf = await PDFLib.PDFDocument.create();
       for (let file of files) {
         const bytes = await file.arrayBuffer();
@@ -36,4 +42,5 @@
       a.click();
     }
   </script>
-</body></html>
+</body>
+</html>
