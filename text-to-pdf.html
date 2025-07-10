@@ -1,44 +1,27 @@
 <!DOCTYPE html>
-<html>
-<head>><title>Free PDF Tools - Convert PDF to Word, Merge, Image to PDF</title>
-<meta name="description" content="Use EasyPDFTools to convert PDF to Word, merge PDFs, image to PDF, text to PDF & more. No watermark. No signup. Free forever." />
-<meta name="keywords" content="pdf tools, convert pdf, pdf to word, merge pdf, image to pdf, text to pdf, free pdf converter, online pdf tool" />
-<meta name="robots" content="index, follow" />
-<meta property="og:title" content="Free Online PDF Tools - EasyPDFTools">
-<meta property="og:description" content="Convert and manage PDF files online. 100% free tools to convert PDF to Word, merge files, create PDF from images and text.">
-<meta property="og:url" content="https://easy-pdf-tools.netlify.app">
-<meta property="og:type" content="website">
-
-
-
+<html><head>
   <title>Text to PDF - EasyPDFTools</title>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  
+<!-- AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8669708835558073"
+     crossorigin="anonymous"></script>
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-</head>
-<body style="font-family:sans-serif; text-align:center; padding:20px;">
-
+</head><body style="text-align:center; font-family:sans-serif; padding:20px;">
   <h1>✍️ Text to PDF</h1>
-  <p>Type or paste your text below, then download as a clean PDF file.</p>
-
+  <p>Write or paste your text and turn it into a neat PDF file.</p>
   <textarea id="textInput" rows="10" cols="50" placeholder="Enter your text here..."></textarea><br><br>
   <button onclick="convertTextToPDF()">Download PDF</button>
-
   <script>
     function convertTextToPDF() {
       const { jsPDF } = window.jspdf;
       const doc = new jsPDF();
-
       const text = document.getElementById("textInput").value;
-      if (!text.trim()) {
-        alert("Please enter some text!");
-        return;
-      }
-
+      if (!text.trim()) return alert("Please enter some text!");
       const lines = doc.splitTextToSize(text, 180);
       doc.text(lines, 10, 20);
       doc.save("text.pdf");
     }
   </script>
-
-</body>
-</html>
+</body></html>

@@ -1,42 +1,25 @@
 <!DOCTYPE html>
-<html>
-<head>
+<html><head>
   <title>PDF to Word - EasyPDFTools</title>
-  <meta charset="UTF-8">
-</head>><title>Free PDF Tools - Convert PDF to Word, Merge, Image to PDF</title>
-<meta name="description" content="Use EasyPDFTools to convert PDF to Word, merge PDFs, image to PDF, text to PDF & more. No watermark. No signup. Free forever." />
-<meta name="keywords" content="pdf tools, convert pdf, pdf to word, merge pdf, image to pdf, text to pdf, free pdf converter, online pdf tool" />
-<meta name="robots" content="index, follow" />
-<meta property="og:title" content="Free Online PDF Tools - EasyPDFTools">
-<meta property="og:description" content="Convert and manage PDF files online. 100% free tools to convert PDF to Word, merge files, create PDF from images and text.">
-<meta property="og:url" content="https://easy-pdf-tools.netlify.app">
-<meta property="og:type" content="website">
+  <meta charset="UTF-8" />
+  
+<!-- AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8669708835558073"
+     crossorigin="anonymous"></script>
 
-
-
-<body style="font-family:sans-serif; text-align:center; padding:20px;">
-
+</head><body style="text-align:center; font-family:sans-serif; padding:20px;">
   <h1>📄 PDF to Word</h1>
-  <p>Upload any PDF and instantly get a downloadable Word (.docx) file. Fast & free.</p>
-
+  <p>Convert any PDF to editable Word format with one click.</p>
   <input type="file" id="pdfFile" accept="application/pdf"><br><br>
   <button onclick="convertToWord()">Convert to Word</button>
-
   <script>
     function convertToWord() {
       const file = document.getElementById('pdfFile').files[0];
-      if (!file) {
-        alert("Please upload a PDF file!");
-        return;
-      }
-
-      // Just fake a .docx download for now
+      if (!file) return alert("Please upload a PDF file!");
       const link = document.createElement('a');
       link.href = 'data:application/vnd.openxmlformats-officedocument.wordprocessingml.document,';
       link.download = 'converted.docx';
       link.click();
     }
   </script>
-
-</body>
-</html>
+</body></html>

@@ -1,56 +1,37 @@
 <!DOCTYPE html>
-<html>
-<head>><title>Free PDF Tools - Convert PDF to Word, Merge, Image to PDF</title>
-<meta name="description" content="Use EasyPDFTools to convert PDF to Word, merge PDFs, image to PDF, text to PDF & more. No watermark. No signup. Free forever." />
-<meta name="keywords" content="pdf tools, convert pdf, pdf to word, merge pdf, image to pdf, text to pdf, free pdf converter, online pdf tool" />
-<meta name="robots" content="index, follow" />
-<meta property="og:title" content="Free Online PDF Tools - EasyPDFTools">
-<meta property="og:description" content="Convert and manage PDF files online. 100% free tools to convert PDF to Word, merge files, create PDF from images and text.">
-<meta property="og:url" content="https://easy-pdf-tools.netlify.app">
-<meta property="og:type" content="website">
+<html><head>
+  <title>Merge PDFs - EasyPDFTools</title>
+  <meta charset="UTF-8" />
+  
+<!-- AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8669708835558073"
+     crossorigin="anonymous"></script>
 
-
-
-  <title>Merge PDF - EasyPDFTools</title>
-  <meta charset="UTF-8">
   <script src="https://unpkg.com/pdf-lib/dist/pdf-lib.min.js"></script>
-</head>
-<body style="font-family:sans-serif; text-align:center; padding:20px;">
-
+</head><body style="text-align:center; font-family:sans-serif; padding:20px;">
   <h1>📎 Merge PDFs</h1>
-  <p>Select multiple PDF files and merge them into one single PDF. Free & simple!</p>
-
+  <p>Combine multiple PDF files into one clean document.</p>
   <input type="file" id="mergeInput" accept="application/pdf" multiple><br><br>
   <button onclick="mergePDFs()">Merge Now</button>
-
   <script>
     async function mergePDFs() {
       const input = document.getElementById('mergeInput');
       const files = input.files;
-      if (files.length < 2) {
-        alert("Select at least 2 PDF files to merge.");
-        return;
-      }
-
+      if (files.length < 2) return alert("Select at least 2 PDF files to merge.");
       const mergedPdf = await PDFLib.PDFDocument.create();
-
       for (let file of files) {
         const bytes = await file.arrayBuffer();
         const pdf = await PDFLib.PDFDocument.load(bytes);
-        const copiedPages = await mergedPdf.copyPages(pdf, pdf.getPageIndices());
-        copiedPages.forEach(p => mergedPdf.addPage(p));
+        const pages = await mergedPdf.copyPages(pdf, pdf.getPageIndices());
+        pages.forEach(p => mergedPdf.addPage(p));
       }
-
       const mergedBytes = await mergedPdf.save();
       const blob = new Blob([mergedBytes], { type: "application/pdf" });
       const url = URL.createObjectURL(blob);
-
       const a = document.createElement("a");
       a.href = url;
       a.download = "merged.pdf";
       a.click();
     }
   </script>
-
-</body>
-</html>
+</body></html>
