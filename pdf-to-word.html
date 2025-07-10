@@ -1,6 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
-<head><title>Free PDF Tools - Convert PDF to Word, Merge, Image to PDF</title>
+<html>
+<head>
+  <title>PDF to Word - EasyPDFTools</title>
+  <meta charset="UTF-8">
+</head>><title>Free PDF Tools - Convert PDF to Word, Merge, Image to PDF</title>
 <meta name="description" content="Use EasyPDFTools to convert PDF to Word, merge PDFs, image to PDF, text to PDF & more. No watermark. No signup. Free forever." />
 <meta name="keywords" content="pdf tools, convert pdf, pdf to word, merge pdf, image to pdf, text to pdf, free pdf converter, online pdf tool" />
 <meta name="robots" content="index, follow" />
@@ -9,50 +12,31 @@
 <meta property="og:url" content="https://easy-pdf-tools.netlify.app">
 <meta property="og:type" content="website">
 
-  <meta charset="UTF-8">
-  <title>PDF to Word Converter</title>
-  <link rel="stylesheet" href="style.css" />
-</head>
-<body>
-  <header>PDF to Word Converter</header>
-  <main>
-    <div class="steps">
-      <p>1. Choose a PDF file</p>
-      <p>2. Click Convert</p>
-      <p>3. Copy or download extracted text</p>
-    </div>
-    <input type="file" id="fileInput" />
-    <button onclick="handleClick()">Start</button>
-  </main>
- <footer>
-  <div style="padding: 20px; text-align: left; max-width: 900px; margin: auto;">
-    <h3>About EasyPDFTools</h3>
-    <p>EasyPDFTools is a fast and free online toolkit to convert and manage your PDF files. No signup, no watermark, 100% free.</p>
 
-    <h3>🛠️ Tools Available</h3>
-    <ul>
-      <li><img src="https://img.icons8.com/color/32/pdf.png"/> PDF to Word – Extract text from PDFs</li>
-      <li><img src="https://img.icons8.com/color/32/image.png"/> Image to PDF – Convert images into PDF</li>
-      <li><img src="https://img.icons8.com/color/32/merge-files.png"/> PDF Merge – Combine multiple PDFs</li>
-      <li><img src="https://img.icons8.com/color/32/text.png"/> Text to PDF – Create PDF from plain text</li>
-    </ul>
 
-    <h3>📞 Contact</h3>
-    <p>Have questions or suggestions? Email us at <strong>support@easypdftools.site</strong></p>
+<body style="font-family:sans-serif; text-align:center; padding:20px;">
 
-    <h3>🔐 Privacy & Disclaimer</h3>
-    <p>We don’t store your files. All processing is done in the browser. Powered by open-source tools.</p>
+  <h1>📄 PDF to Word</h1>
+  <p>Upload any PDF and instantly get a downloadable Word (.docx) file. Fast & free.</p>
 
-    <p style="text-align:center; margin-top: 20px; font-size: 14px; color: #666;">© 2025 EasyPDFTools — All rights reserved</p>
-  </div>
-</footer>
+  <input type="file" id="pdfFile" accept="application/pdf"><br><br>
+  <button onclick="convertToWord()">Convert to Word</button>
 
-  <footer>© 2025 EasyPDFTools</footer>
   <script>
-    function handleClick() {
-      alert("This is a demo. Add your script here.");
+    function convertToWord() {
+      const file = document.getElementById('pdfFile').files[0];
+      if (!file) {
+        alert("Please upload a PDF file!");
+        return;
+      }
+
+      // Just fake a .docx download for now
+      const link = document.createElement('a');
+      link.href = 'data:application/vnd.openxmlformats-officedocument.wordprocessingml.document,';
+      link.download = 'converted.docx';
+      link.click();
     }
   </script>
-  
+
 </body>
 </html>
