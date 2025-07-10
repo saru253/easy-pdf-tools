@@ -1,58 +1,49 @@
 <!DOCTYPE html>
-<html lang="en">
-<head><title>Free PDF Tools - Convert PDF to Word, Merge, Image to PDF</title>
-<meta name="description" content="Use EasyPDFTools to convert PDF to Word, merge PDFs, image to PDF, text to PDF & more. No watermark. No signup. Free forever." />
-<meta name="keywords" content="pdf tools, convert pdf, pdf to word, merge pdf, image to pdf, text to pdf, free pdf converter, online pdf tool" />
-<meta name="robots" content="index, follow" />
-<meta property="og:title" content="Free Online PDF Tools - EasyPDFTools">
-<meta property="og:description" content="Convert and manage PDF files online. 100% free tools to convert PDF to Word, merge files, create PDF from images and text.">
-<meta property="og:url" content="https://easy-pdf-tools.netlify.app">
-<meta property="og:type" content="website">
-
+<html>
+<head>
+  <title>Image to PDF - EasyPDFTools</title>
   <meta charset="UTF-8">
-  <title>Image to PDF</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
-<body>
-  <header>Image to PDF</header>
-  <main>
-    <div class="steps">
-      <p>1. Select one or more images</p>
-      <p>2. Click Convert</p>
-      <p>3. Download PDF</p>
-    </div>
-    <input type="file" id="fileInput" />
-    <button onclick="handleClick()">Start</button>
-  </main>
-  <footer>
-  <div style="padding: 20px; text-align: left; max-width: 900px; margin: auto;">
-    <h3>About EasyPDFTools</h3>
-    <p>EasyPDFTools is a fast and free online toolkit to convert and manage your PDF files. No signup, no watermark, 100% free.</p>
+<body style="font-family:sans-serif; text-align:center; padding:20px;">
 
-    <h3>🛠️ Tools Available</h3>
-    <ul>
-      <li><img src="https://img.icons8.com/color/32/pdf.png"/> PDF to Word – Extract text from PDFs</li>
-      <li><img src="https://img.icons8.com/color/32/image.png"/> Image to PDF – Convert images into PDF</li>
-      <li><img src="https://img.icons8.com/color/32/merge-files.png"/> PDF Merge – Combine multiple PDFs</li>
-      <li><img src="https://img.icons8.com/color/32/text.png"/> Text to PDF – Create PDF from plain text</li>
-    </ul>
+  <h1>🖼️ Image to PDF</h1>
 
-    <h3>📞 Contact</h3>
-    <p>Have questions or suggestions? Email us at <strong>support@easypdftools.site</strong></p>
+  <input type="file" id="imageUpload" accept="image/*" multiple><br><br>
+  <button onclick="generatePDF()">Convert to PDF</button>
 
-    <h3>🔐 Privacy & Disclaimer</h3>
-    <p>We don’t store your files. All processing is done in the browser. Powered by open-source tools.</p>
-
-    <p style="text-align:center; margin-top: 20px; font-size: 14px; color: #666;">© 2025 EasyPDFTools — All rights reserved</p>
-  </div>
-</footer>
-
-  <footer>© 2025 EasyPDFTools</footer>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script>
-    function handleClick() {
-      alert("This is a demo. Add your script here.");
+    async function generatePDF() {
+      const { jsPDF } = window.jspdf;
+      const pdf = new jsPDF();
+
+      const files = document.getElementById('imageUpload').files;
+      if (files.length === 0) {
+        alert('Please select at least one image!');
+        return;
+      }
+
+      for (let i = 0; i < files.length; i++) {
+        const file = files[i];
+        const img = new Image();
+        img.src = URL.createObjectURL(file);
+
+        await new Promise(resolve => {
+          img.onload = () => {
+            const imgWidth = pdf.internal.pageSize.getWidth();
+            const imgHeight = (img.height * imgWidth) / img.width;
+
+            if (i > 0) pdf.addPage();
+            pdf.addImage(img, 'JPEG', 0, 0, imgWidth, imgHeight);
+            resolve();
+          };
+        });
+      }
+
+      pdf.save('converted.pdf');
     }
   </script>
-  
+
 </body>
 </html>
