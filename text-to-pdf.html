@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
-<head><title>Free PDF Tools - Convert PDF to Word, Merge, Image to PDF</title>
+<html>
+<head>><title>Free PDF Tools - Convert PDF to Word, Merge, Image to PDF</title>
 <meta name="description" content="Use EasyPDFTools to convert PDF to Word, merge PDFs, image to PDF, text to PDF & more. No watermark. No signup. Free forever." />
 <meta name="keywords" content="pdf tools, convert pdf, pdf to word, merge pdf, image to pdf, text to pdf, free pdf converter, online pdf tool" />
 <meta name="robots" content="index, follow" />
@@ -9,50 +9,36 @@
 <meta property="og:url" content="https://easy-pdf-tools.netlify.app">
 <meta property="og:type" content="website">
 
+
+
+  <title>Text to PDF - EasyPDFTools</title>
   <meta charset="UTF-8">
-  <title>Text to PDF</title>
-  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
-<body>
-  <header>Text to PDF</header>
-  <main>
-    <div class="steps">
-      <p>1. Write or paste text</p>
-      <p>2. Click Generate</p>
-      <p>3. Download text as PDF</p>
-    </div>
-    <input type="file" id="fileInput" />
-    <button onclick="handleClick()">Start</button>
-  </main>
-  <footer>
-  <div style="padding: 20px; text-align: left; max-width: 900px; margin: auto;">
-    <h3>About EasyPDFTools</h3>
-    <p>EasyPDFTools is a fast and free online toolkit to convert and manage your PDF files. No signup, no watermark, 100% free.</p>
+<body style="font-family:sans-serif; text-align:center; padding:20px;">
 
-    <h3>🛠️ Tools Available</h3>
-    <ul>
-      <li><img src="https://img.icons8.com/color/32/pdf.png"/> PDF to Word – Extract text from PDFs</li>
-      <li><img src="https://img.icons8.com/color/32/image.png"/> Image to PDF – Convert images into PDF</li>
-      <li><img src="https://img.icons8.com/color/32/merge-files.png"/> PDF Merge – Combine multiple PDFs</li>
-      <li><img src="https://img.icons8.com/color/32/text.png"/> Text to PDF – Create PDF from plain text</li>
-    </ul>
+  <h1>✍️ Text to PDF</h1>
+  <p>Type or paste your text below, then download as a clean PDF file.</p>
 
-    <h3>📞 Contact</h3>
-    <p>Have questions or suggestions? Email us at <strong>support@easypdftools.site</strong></p>
+  <textarea id="textInput" rows="10" cols="50" placeholder="Enter your text here..."></textarea><br><br>
+  <button onclick="convertTextToPDF()">Download PDF</button>
 
-    <h3>🔐 Privacy & Disclaimer</h3>
-    <p>We don’t store your files. All processing is done in the browser. Powered by open-source tools.</p>
-
-    <p style="text-align:center; margin-top: 20px; font-size: 14px; color: #666;">© 2025 EasyPDFTools — All rights reserved</p>
-  </div>
-</footer>
-
-  <footer>© 2025 EasyPDFTools</footer>
   <script>
-    function handleClick() {
-      alert("This is a demo. Add your script here.");
+    function convertTextToPDF() {
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF();
+
+      const text = document.getElementById("textInput").value;
+      if (!text.trim()) {
+        alert("Please enter some text!");
+        return;
+      }
+
+      const lines = doc.splitTextToSize(text, 180);
+      doc.text(lines, 10, 20);
+      doc.save("text.pdf");
     }
   </script>
-  
+
 </body>
 </html>
