@@ -1,29 +1,36 @@
 <!DOCTYPE html>
-<html>
-<head><link rel="stylesheet" href="style.css" />
-
-  <title>Text to PDF - EasyPDFTools</title>
+<html lang="en">
+<head>
   <meta charset="UTF-8" />
-  
-<!-- AdSense -->
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8669708835558073"
-     crossorigin="anonymous"></script>
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Text to PDF - EasyPDFTools</title>
+  <meta name="description" content="Convert text to PDF online. Paste your content and get instant download. Fast, free, and stylish." />
+  <link rel="stylesheet" href="style.css" />
+  <!-- AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8669708835558073" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-</head><body style="text-align:center; font-family:sans-serif; padding:20px;">
-  <h1>✍️ Text to PDF</h1>
-  <p>Write or paste your text and turn it into a neat PDF file.</p>
-  <textarea id="textInput" rows="10" cols="50" placeholder="Enter your text here..."></textarea><br><br>
-  <button onclick="convertTextToPDF()">Download PDF</button>
+</head>
+<body>
+  <header>
+    <h1>✍️ Text to PDF</h1>
+    <p>Paste your text and convert it to a beautiful PDF</p>
+  </header>
+  <div class="container">
+    <textarea id="textInput" placeholder="Enter your text here..."></textarea><br>
+    <button onclick="convertTextToPDF()">Download PDF</button>
+  </div>
+  <div class="footer">© 2025 EasyPDFTools</div>
+
   <script>
     function convertTextToPDF() {
       const { jsPDF } = window.jspdf;
       const doc = new jsPDF();
-      const text = document.getElementById("textInput").value;
-      if (!text.trim()) return alert("Please enter some text!");
+      const text = document.getElementById("textInput").value.trim();
+      if (!text) return alert("Please enter some text.");
       const lines = doc.splitTextToSize(text, 180);
       doc.text(lines, 10, 20);
       doc.save("text.pdf");
     }
   </script>
-</body></html>
+</body>
+</html>
